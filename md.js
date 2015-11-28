@@ -1,6 +1,13 @@
+marked.setOptions({
+    highlight: function(code,lang) {
+        return hljs.highlightAuto(code,[lang]).value;
+    }
+});
 shingetsu.initialize(function(){
- $.each($("dd"),function(i,ele){
+ $("dd").each(function(i,ele){
   var t=$(ele).text();
-  if(t.startsWith("@markdown")){$(ele).html(marked(t.substring("@markdown".length)));}
+  if(t.substring(0,"@markdown".length)=="@markdown"){
+   $(ele).html(marked(t.substring("@markdown".length)));
+  }
  });
 });
